@@ -8,7 +8,7 @@ var Roth = React.createClass({
     render() {
         return (
             /* jshint ignore: start*/
-            <div>Hello I am RothZZZ Component</div>
+            <div>Hello I am Roth Component</div>
             /* jshint ignore: end*/
         );
     }
