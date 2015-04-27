@@ -20,7 +20,8 @@
   "scripts": {
     "start": "cd build; python -m SimpleHTTPServer 5000",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack"
+    "build": "webpack",
+    "dev": "webpack-dev-server --devtool eval --progress --colors --hot --content-base build --port 5000"
   },
   "repository": {
     "type": "git",
