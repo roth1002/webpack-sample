@@ -3,9 +3,9 @@
 'use strict';
 
 var React = require('react');
-    ROTH = require('./Roth.js');
-    LEO = require('./Leo.js');
-    TIM = require('./Tim.js');
+var ROTH = require('./Roth.js');
+var LEO = require('./Leo.js');
+var TIM = require('./Tim.js');
 
 var Main = React.createClass({
     getInitialState: function() {
@@ -22,7 +22,7 @@ var Main = React.createClass({
         return (
             <div>
                 <input type="button" onClick={this._toggle} value="點我"/>
-                {this.state.switch ? <TestOne /> : <TestTwo />}
+                {this.state.switch ? <ROTH /> : <LEO />}
             </div>
         );
     }

@@ -4,11 +4,11 @@
 
 var React = require('react');
 
-var TestOne = React.createClass({
+var Leo = React.createClass({
     render() {
         return (
             /* jshint ignore: start*/
-            <div>Hello I am Loe Component</div>
+            <div>Hello I am Leo Component</div>
             /* jshint ignore: end*/
         );
     }

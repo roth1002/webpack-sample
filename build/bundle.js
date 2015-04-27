@@ -56,9 +56,9 @@
 	'use strict';
 
 	var React = __webpack_require__(5);
-	ROTH = __webpack_require__(2);
-	LEO = __webpack_require__(3);
-	TIM = __webpack_require__(4);
+	var ROTH = __webpack_require__(2);
+	var LEO = __webpack_require__(3);
+	var TIM = __webpack_require__(4);
 
 	var Main = React.createClass({
 	    displayName: 'Main',
@@ -78,7 +78,7 @@
 	            'div',
 	            null,
 	            React.createElement('input', { type: 'button', onClick: this._toggle, value: '點我' }),
-	            this.state['switch'] ? React.createElement(TestOne, null) : React.createElement(TestTwo, null)
+	            this.state['switch'] ? React.createElement(ROTH, null) : React.createElement(LEO, null)
 	        );
 	    }
 	});
@@ -95,8 +95,8 @@
 
 	var React = __webpack_require__(5);
 
-	var TestOne = React.createClass({
-	    displayName: 'TestOne',
+	var Roth = React.createClass({
+	    displayName: 'Roth',
 
 	    render: function render() {
 	        return (
@@ -124,8 +124,8 @@
 
 	var React = __webpack_require__(5);
 
-	var TestOne = React.createClass({
-	    displayName: 'TestOne',
+	var Leo = React.createClass({
+	    displayName: 'Leo',
 
 	    render: function render() {
 	        return (
@@ -133,7 +133,7 @@
 	            React.createElement(
 	                'div',
 	                null,
-	                'Hello I am Loe Component'
+	                'Hello I am Leo Component'
 	            )
 	        );
 	    }
@@ -153,8 +153,8 @@
 
 	var React = __webpack_require__(5);
 
-	var TestOne = React.createClass({
-	    displayName: 'TestOne',
+	var Tim = React.createClass({
+	    displayName: 'Tim',
 
 	    render: function render() {
 	        return (
@@ -2079,9 +2079,9 @@
 	var ReactPropTypeLocations = __webpack_require__(39);
 	var ReactPropTypeLocationNames = __webpack_require__(40);
 	var ReactCurrentOwner = __webpack_require__(12);
-	var ReactNativeComponent = __webpack_require__(44);
+	var ReactNativeComponent = __webpack_require__(45);
 
-	var getIteratorFn = __webpack_require__(45);
+	var getIteratorFn = __webpack_require__(46);
 	var invariant = __webpack_require__(30);
 	var warning = __webpack_require__(34);
 
@@ -2470,7 +2470,7 @@
 	var ReactElement = __webpack_require__(13);
 	var ReactElementValidator = __webpack_require__(14);
 
-	var mapObject = __webpack_require__(46);
+	var mapObject = __webpack_require__(44);
 
 	/**
 	 * Create a factory that creates HTML tag elements.
@@ -5202,7 +5202,7 @@
 	var ReactFragment = __webpack_require__(32);
 	var ReactInstanceHandles = __webpack_require__(18);
 
-	var getIteratorFn = __webpack_require__(45);
+	var getIteratorFn = __webpack_require__(46);
 	var invariant = __webpack_require__(30);
 	var warning = __webpack_require__(34);
 
@@ -5981,6 +5981,62 @@
 /* 44 */
 /***/ function(module, exports, __webpack_require__) {
 
+	/**
+	 * Copyright 2013-2015, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule mapObject
+	 */
+
+	'use strict';
+
+	var hasOwnProperty = Object.prototype.hasOwnProperty;
+
+	/**
+	 * Executes the provided `callback` once for each enumerable own property in the
+	 * object and constructs a new object from the results. The `callback` is
+	 * invoked with three arguments:
+	 *
+	 *  - the property value
+	 *  - the property name
+	 *  - the object being traversed
+	 *
+	 * Properties that are added after the call to `mapObject` will not be visited
+	 * by `callback`. If the values of existing properties are changed, the value
+	 * passed to `callback` will be the value at the time `mapObject` visits them.
+	 * Properties that are deleted before being visited are not visited.
+	 *
+	 * @grep function objectMap()
+	 * @grep function objMap()
+	 *
+	 * @param {?object} object
+	 * @param {function} callback
+	 * @param {*} context
+	 * @return {?object}
+	 */
+	function mapObject(object, callback, context) {
+	  if (!object) {
+	    return null;
+	  }
+	  var result = {};
+	  for (var name in object) {
+	    if (hasOwnProperty.call(object, name)) {
+	      result[name] = callback.call(context, object[name], name, object);
+	    }
+	  }
+	  return result;
+	}
+
+	module.exports = mapObject;
+
+/***/ },
+/* 45 */
+/***/ function(module, exports, __webpack_require__) {
+
 	/* WEBPACK VAR INJECTION */(function(process) {/**
 	 * Copyright 2014-2015, Facebook, Inc.
 	 * All rights reserved.
@@ -6083,7 +6139,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(28)))
 
 /***/ },
-/* 45 */
+/* 46 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -6126,62 +6182,6 @@
 	}
 
 	module.exports = getIteratorFn;
-
-/***/ },
-/* 46 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * Copyright 2013-2015, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 * @providesModule mapObject
-	 */
-
-	'use strict';
-
-	var hasOwnProperty = Object.prototype.hasOwnProperty;
-
-	/**
-	 * Executes the provided `callback` once for each enumerable own property in the
-	 * object and constructs a new object from the results. The `callback` is
-	 * invoked with three arguments:
-	 *
-	 *  - the property value
-	 *  - the property name
-	 *  - the object being traversed
-	 *
-	 * Properties that are added after the call to `mapObject` will not be visited
-	 * by `callback`. If the values of existing properties are changed, the value
-	 * passed to `callback` will be the value at the time `mapObject` visits them.
-	 * Properties that are deleted before being visited are not visited.
-	 *
-	 * @grep function objectMap()
-	 * @grep function objMap()
-	 *
-	 * @param {?object} object
-	 * @param {function} callback
-	 * @param {*} context
-	 * @return {?object}
-	 */
-	function mapObject(object, callback, context) {
-	  if (!object) {
-	    return null;
-	  }
-	  var result = {};
-	  for (var name in object) {
-	    if (hasOwnProperty.call(object, name)) {
-	      result[name] = callback.call(context, object[name], name, object);
-	    }
-	  }
-	  return result;
-	}
-
-	module.exports = mapObject;
 
 /***/ },
 /* 47 */
@@ -9233,7 +9233,7 @@
 	var ReactClass = __webpack_require__(10);
 	var ReactEmptyComponent = __webpack_require__(81);
 	var ReactBrowserEventEmitter = __webpack_require__(80);
-	var ReactNativeComponent = __webpack_require__(44);
+	var ReactNativeComponent = __webpack_require__(45);
 	var ReactDOMComponent = __webpack_require__(49);
 	var ReactPerf = __webpack_require__(20);
 	var ReactRootIndex = __webpack_require__(78);
@@ -11522,7 +11522,7 @@
 
 	var ReactCompositeComponent = __webpack_require__(134);
 	var ReactEmptyComponent = __webpack_require__(81);
-	var ReactNativeComponent = __webpack_require__(44);
+	var ReactNativeComponent = __webpack_require__(45);
 
 	var assign = __webpack_require__(24);
 	var invariant = __webpack_require__(30);
@@ -15780,7 +15780,7 @@
 	var ReactElementValidator = __webpack_require__(14);
 	var ReactInstanceMap = __webpack_require__(37);
 	var ReactLifeCycle = __webpack_require__(38);
-	var ReactNativeComponent = __webpack_require__(44);
+	var ReactNativeComponent = __webpack_require__(45);
 	var ReactPerf = __webpack_require__(20);
 	var ReactPropTypeLocations = __webpack_require__(39);
 	var ReactPropTypeLocationNames = __webpack_require__(40);

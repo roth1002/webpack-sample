@@ -4,7 +4,7 @@
 
 var React = require('react');
 
-var TestOne = React.createClass({
+var Roth = React.createClass({
     render() {
         return (
             /* jshint ignore: start*/
